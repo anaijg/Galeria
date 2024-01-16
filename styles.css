@@ -1,0 +1,73 @@
+
+/* Esta regla ajusta automáticamente las dimensiones de los elementos, de forma que no tengamos que ajustar su tamaño cada vez que cambiamos el padding o el border
+concretamente:
+
+* es el selector universal, y actúa como un comodín; significa que esta regla se aplica a TODOS los  
+  demás elementos en el documento HTML
+
+  box-sizing: define cómo se deben calcular las dimensiones de un elemento; su valor por defecto (si no lo ponemos) es content-box, que significa que las propiedades width y height no incluyen el padding ni el border (aquí te lo explican: https://www.w3schools.com/css/css_boxmodel.asp). 
+
+  border-box: hace que las dimensiones del elemento incluyan el contenido + padding + border, y así no te tienes que preocupar por que las cajas "se te salgan" si añades padding y/o border
+*/
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    font-family: sans-serif;
+    background: #f5f6f7;
+  }
+  
+  .header {
+    text-align: center;
+    text-transform: uppercase;
+    padding: 32px;
+    background-color: #0a0a23;
+    color: #fff;
+    border-bottom: 4px solid #fdb347;
+  }
+  
+  /* 
+  la clase gallery es el contenedor flexbox (display:flex), así que todo lo que caiga dentro seguirá las reglas de de flexbox. Si no tienes una regla display:flex ya puedes poner justify-content, align-items, etc. que te va a dar igual, no van a funcionar.
+  */
+
+  .gallery {
+    /* indicamos que gallery es un contenedor flex */
+    display: flex;
+    /* flex-direction: indicamos si los elementos se alinean en el eje horizontal (row) o en el eje vertical (column); además podemos indicar que te ponga los elementos en orden inverso (row-reverse o column-reverse)
+    */
+    flex-direction:row;
+    /*
+     flex-wrap (wrap significa "envolver") hace que, si no caben los elementos en una línea, se acomoden saltando a la segunda línea los que no quepan en la primera (poniendo el valor wrap). Si no queremos este salto de línea ponemos nowrap o no ponemos nada porque este es el valor por defecto.
+    */
+    flex-wrap: wrap;
+    /*
+    justify-content: pone los elementos al principio de la linea (flex-start), al final (flex-end), en el centro (center) o se distribuyen dejando el mismo espacio entre ellos (space-between) o dejando la mitad del espacio entre dos elementos adyacentes al principio y al final (space-around)
+    */
+    justify-content: center;
+    /*
+    align-items: indican dónde se ubican los elementos EN EL CONTENEDOR. Tiene los mismos valores que justify-content; la diferencia estriba en que justify-content indica cómo se distribuyen los elementos en la fila (si flex-direction es row) on en la columna (si flex-direction es column).
+    */
+    align-items: center;
+    /* indica que habrá un espacio de 16px entre las filas y las columnas*/
+    gap: 16px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 10px;
+  }
+  
+  .gallery img {
+    width: 100%;
+    max-width: 350px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  /* ::after es un pseudoelemento: añade un contenido después de gallery*/
+  .gallery::after {
+    content: "";
+    width: 350px;
+  }
+  
